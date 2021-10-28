@@ -2,10 +2,12 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Post;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
-use App\Entity\Post;
+
+
 
 class AppFixtures extends Fixture
 {
@@ -15,7 +17,7 @@ class AppFixtures extends Fixture
         // $manager->persist($product);
         $faker = Factory::create('fr_FR');
 
-        for($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $post = new Post();
             $post->setTitle($faker->sentence($nbWords= 2,$variablesNbWords = true))
                 ->setContent($faker->sentence($nbWords= 10,$variablesNbWords = true))

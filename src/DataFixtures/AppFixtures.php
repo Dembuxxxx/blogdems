@@ -4,6 +4,8 @@ namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
+use App\Entity\Post;
 
 class AppFixtures extends Fixture
 {
@@ -11,13 +13,14 @@ class AppFixtures extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
+        $faker = Factory::create('fr_FR');
 
         for($i = 0; $i < 10; $i++) {
             $post = new Post();
-            $post->setTitle('Titre 1')
-                ->setContent("Lorem ipsum")
-                ->setAuthor('Demba Soumare')
-                ->setCreateAt(new \DateTime());
+            $post->setTitle($faker->sentence($nbWords= 2,$variablesNbWords = true))
+                ->setContent($faker->sentence($nbWords= 10,$variablesNbWords = true))
+                ->setAuthor( $faker->name())
+                ->setCreateAt($faker->dateTimeBetween('-6 months'));
             
             $manager->persist($post);
         }

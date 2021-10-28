@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,6 +30,19 @@ class HomeController extends AbstractController
             'posts' => $posts
             
            
+        ]); 
+    }
+    /**
+     * @Route("/posts/(id)", "show_post")
+     */
+    public function show(Post $post)
+    {
+
+        return $this->render('home/post.html.twig', [
+            'posts' => $post
         ]);
     }
+
 }
+
+
